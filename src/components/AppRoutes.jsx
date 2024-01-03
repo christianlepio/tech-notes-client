@@ -2,8 +2,9 @@ import { Routes, Route } from "react-router-dom"
 // layout component
 import Layout from "./Layout"
 import PublicPage from "./PublicPage"
-import Login from "./Login"
+import Login from "../features/auth/components/Login"
 import DashLayout from "./DashLayout"
+import WelcomePage from "../features/auth/components/WelcomePage"
 
 const AppRoutes = () => {
     return (
@@ -18,7 +19,9 @@ const AppRoutes = () => {
 
                 {/* protected routes below */}
                 <Route path="dash" element={<DashLayout />} >
-                    
+                    {/* this is the index page for the protected routes */}
+                    <Route index element={<WelcomePage />} />
+
                 </Route>
             </Route>
         </Routes>
