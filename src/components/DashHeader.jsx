@@ -4,7 +4,7 @@ const DashHeader = () => {
     const content = (
         <header>
             <div>
-                <Link to="/dash/notes">
+                <Link to="/dash">
                     <h1 className="">techNotes</h1>
                 </Link>
                 <nav>
