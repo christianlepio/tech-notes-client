@@ -16,7 +16,7 @@ const DashFooter = () => {
     if (pathname !== '/dash') {
         goHomeButton = (
             <button
-                className="btn btn-primary rounded-3 px-3"
+                className="btn btn-sm btn-primary rounded-3 px-3 mx-2"
                 onClick={onGoHomeClicked}
             >
                 <i className="bi bi-house-door"></i> Home
@@ -26,9 +26,11 @@ const DashFooter = () => {
 
     const content = (
         <footer className="py-5">
-            {goHomeButton}
-            <p>Current User: </p>
-            <p>Status: </p>
+            <div className="d-flex justify-content-start">
+                {goHomeButton}
+                <p className="mx-4">Current User: </p>
+                <p className="mx-4">Status: </p>
+            </div>
         </footer>
     )
 
