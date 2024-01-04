@@ -11,7 +11,10 @@ import {
 import { apiSlice } from '../../app/api/apiSlice'
 
 // create entity adapter
-const notesAdapter = createEntityAdapter({})
+const notesAdapter = createEntityAdapter({
+    // sort by status
+    sortComparer: (a, b) => (a.completed === b.completed) ? 0 : a.completed ? 1 : -1 
+})
 
 // assign initialized state for notesAdapter
 // even if u don't have a notes[] array here, notesAdapter will automatically 

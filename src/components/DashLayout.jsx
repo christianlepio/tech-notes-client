@@ -7,7 +7,7 @@ const DashLayout = () => {
     return (
         <>
             <DashHeader />
-            <main className="d-flex justify-content-start mt-5">
+            <main className="d-flex justify-content-center mt-5">
                 {/* these are the children protected routes */}
                 <Outlet />
             </main>
