@@ -65,7 +65,48 @@ export const notesApiSlice = apiSlice.injectEndpoints({
             }
         }),
 
-        
+        // method to add new note
+        // builder.mutation is for applying changes to cached data 
+        addNewNote: builder.mutation({
+            query: noteData => ({
+                url: '/notes', 
+                method: 'POST', 
+                body: {
+                    ...noteData
+                }
+            }), 
+            // this will force the cached data Note to update
+            invalidatesTags: [
+                { type: 'Note', id: 'LIST' }
+            ]
+        }), 
+
+        // method to update note data
+        updateNote: builder.mutation({
+            query: noteData => ({
+                url: '/notes',
+                method: 'PATCH',
+                body: {
+                    ...noteData
+                }
+            }), 
+            // this will force the specific note that has an id equals to arg.id to update details 
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Note', id: arg.id }
+            ]
+        }), 
+
+        //method to delete note
+        deleteNote: builder.mutation({
+            query: ({ id }) => ({
+                url: '/notes', 
+                method: 'DELETE',
+                body: { id }
+            }), 
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Note', id: arg.id }
+            ]
+        })
     })
 })
 
@@ -73,6 +114,9 @@ export const notesApiSlice = apiSlice.injectEndpoints({
 // these custom hooks can be used by the components
 export const {
     useGetNotesQuery, // custom hook generated from getNotes query method 
+    useAddNewNoteMutation, // generated from addNewNote mutation method 
+    useUpdateNoteMutation, // generated from updateNote mutation method
+    useDeleteNoteMutation // generated from deleteNote mutation method
 } = notesApiSlice
 
 // start of selectors
