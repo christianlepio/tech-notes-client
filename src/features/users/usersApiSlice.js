@@ -62,7 +62,48 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             }
         }),
 
-        
+        // method to add new user
+        // builder.mutation is for applying changes to cached data 
+        addNewUser: builder.mutation({
+            query: initUserData => ({
+                url: '/users',
+                method: 'POST', // post method to submit or save new user
+                body: {
+                    ...initUserData, 
+                }
+            }), 
+            // this will force the cached data User to update
+            invalidatesTags: [
+                { type: 'User', id: 'LIST' }
+            ]
+        }), 
+
+        // method to update user
+        updateUser: builder.mutation({
+            query: initUserData => ({
+                url: '/users',
+                method: 'PATCH', 
+                body: {
+                    ...initUserData, 
+                }
+            }), 
+            // this will force the specific user that has an id equals to arg.id to update details 
+            invalidatesTags: (result, error, arg) => [
+                { type: 'User', id: arg.id }
+            ]
+        }), 
+
+        // method to delete user
+        deleteUser: builder.mutation({
+            query: ({ id }) => ({
+                url: '/users', 
+                method: 'DELETE',
+                body: { id }
+            }), 
+            invalidatesTags: (result, error, arg) => [
+                { type: 'User', id: arg.id }
+            ]
+        })
     })
 })
 
@@ -70,6 +111,9 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 // these custom hooks can be used by the components
 export const {
     useGetUsersQuery, // custom hook generated from getUsers query method 
+    useAddNewUserMutation, // generated from addNewUser mutation method 
+    useUpdateUserMutation, // generated from updateUser mutation method
+    useDeleteUserMutation // generated from deleteUser mutation method
 } = usersApiSlice
 
 // start of selectors
