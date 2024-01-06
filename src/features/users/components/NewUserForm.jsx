@@ -45,7 +45,7 @@ const NewUserForm = () => {
         setValidUsername(USER_REGEX.test(username))
     }, [username])
 
-    // validdate password using user regex
+    // validdate password using password regex
     useEffect(() => {
         setValidPassword(PWD_REGEX.test(password))
     }, [password])
