@@ -206,7 +206,7 @@ const NewUserForm = () => {
                             className="btn btn-success flex-grow-1 mt-2"
                             disabled={!canSave}
                         >
-                            Sign Up
+                            Submit User
                         </button>
                     </div>
                 </form>
