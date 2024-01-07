@@ -34,10 +34,11 @@ const UsersList = () => {
 
         content = (
             <div className="table-responsive">
-                <table className="table table-hover">
+                <table className="table table-hover table-striped">
                     <thead>
                         <tr>
                             <th scope="col"> # </th>
+                            <th scope="col">Status</th>
                             <th scope="col">Username</th>
                             <th scope="col">Roles</th>
                             <th scope="col">Edit</th>

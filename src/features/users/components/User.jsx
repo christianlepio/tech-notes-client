@@ -17,14 +17,15 @@ const User = ({ userId, index }) => {
         // set roles array to a string & replace comma to comma space
         const userRolesString = user.roles.toString().replaceAll(',', ', ')
         // if user is active then set cell status to table-active
-        const cellStatus = user.active ? 'table-active' : ''
+        const statusClass = user.active ? 'text-success' : 'text-danger'
 
         return (
             <tr>
-                <th scope='row' className={cellStatus}>{index + 1}</th>
-                <td className={cellStatus}>{user.username}</td>
-                <td className={cellStatus}>{userRolesString}</td>
-                <td className={cellStatus}>
+                <th scope='row'>{index + 1}</th>
+                <td><i className={`bi bi-circle-fill ${statusClass}`}></i></td>
+                <td>{user.username}</td>
+                <td>{userRolesString}</td>
+                <td>
                     <button 
                         className="btn btn-primary" 
                         onClick={handleEdit}
