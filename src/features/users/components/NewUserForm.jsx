@@ -169,7 +169,7 @@ const NewUserForm = () => {
 
                     {/* select roles option */}
                     <div className="mb-3">
-                        <label htmlFor="rolesInput" class="form-label lead">Assigned Roles</label>
+                        <label htmlFor="rolesInput" className="form-label lead">Assigned Roles</label>
                         <select 
                             className={`form-select ${validRolesClass}`} 
                             id="rolesInput"
@@ -192,7 +192,7 @@ const NewUserForm = () => {
                             {
                                 rolesFocus 
                                     ? validRolesClass === 'is-valid'
-                                        ? ( <p>Password looks good!</p> ) 
+                                        ? ( <p>User role/s looks good!</p> ) 
                                         : ( <p>Please Select at least 1 role!</p> )
                                     : null
                             }
