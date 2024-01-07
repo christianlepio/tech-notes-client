@@ -247,7 +247,7 @@ const EditUserForm = ({ user }) => {
                                 checked={active}
                                 onChange={onActiveChanged}
                             />
-                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault"> Active</label>
+                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault"> Activate User</label>
                         </div>
                     </div>
 
