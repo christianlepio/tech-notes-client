@@ -34,7 +34,7 @@ const NotesList = () => {
 
         content = (
             <div className="table-responsive">
-                <table className="table table-hover">
+                <table className="table table-hover table-striped">
                     <thead>
                         <tr>
                             <th scope="col"> # </th>
