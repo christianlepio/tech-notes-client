@@ -13,7 +13,7 @@ const Note = ({ noteId, index }) => {
 
     if (note) {
         // navigate to edit form of note
-        const handleEdit = () => navigate(`dash/notes/${noteId}`)
+        const handleEdit = () => navigate(`/dash/notes/${noteId}`)
 
         // format dates
         const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })
