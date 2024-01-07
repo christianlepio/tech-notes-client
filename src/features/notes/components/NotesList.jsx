@@ -11,7 +11,11 @@ const NotesList = () => {
         isSuccess, // boolean
         isError, // boolean
         error // error message
-    } = useGetNotesQuery()
+    } = useGetNotesQuery(undefined, {
+        pollingInterval: 15000, // means, it will refetch notes data every after 15 seconds
+        refetchOnFocus: true, // will refetch notes data if you go to another window and comeback to previous window
+        refetchOnMountOrArgChange: true // will refetch notes data if component reloads
+    })
 
     // define content
     let content

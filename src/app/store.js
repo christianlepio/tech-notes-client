@@ -1,6 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit"
 // this contains RTK query (endpoints) for managing notes and users
-import { apiSlice } from "./api/apiSlice";
+import { apiSlice } from "./api/apiSlice"
+import { setupListeners } from "@reduxjs/toolkit/query"
 
 // config
 export const store = configureStore({
@@ -18,3 +19,6 @@ export const store = configureStore({
     // allow debugging with react devtools 
     devTools: true
 })
+
+// this will enabled some options that we can use now with rtk query
+setupListeners(store.dispatch)

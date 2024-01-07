@@ -20,6 +20,7 @@ const EditUserForm = ({ user }) => {
 
     // initialize RTK query custom hooks mutation, and get the method and variables and rename it
     const [deleteUser, {
+        isLoading: isDelLoads,
         isSuccess: isDelSuccess, 
         isError: isDelError,
         error: delError
@@ -60,12 +61,14 @@ const EditUserForm = ({ user }) => {
 
     useEffect(() => {
         if (isSuccess || isDelSuccess) {
+            console.log('isSuccess: ', isSuccess)
+            console.log('isDelSuccess: ', isDelSuccess)
             setUsername('')
             setPassword('')
             setRoles([])
             navigate('/dash/users')
         }
-    }, [isSuccess. isDelSuccess, navigate])
+    }, [isSuccess, isDelSuccess, navigate])
 
     const onUsernameChanged = e => setUsername(e.target.value)
     const onPasswordChanged = e => setPassword(e.target.value)
@@ -253,9 +256,9 @@ const EditUserForm = ({ user }) => {
                         <button 
                             type="submit"
                             className="btn btn-success flex-grow-1 mt-2"
-                            disabled={!canSave}
+                            disabled={(isLoading || isDelLoads) ? true : !canSave}
                         >
-                            Save User
+                            {isLoading ? 'Updating...' : 'Save User'}
                         </button>
                     </div>
 
@@ -265,8 +268,9 @@ const EditUserForm = ({ user }) => {
                             type="button"
                             className="btn btn-warning flex-grow-1 mt-2"
                             onClick={onDeleteUserClicked}
+                            disabled={(isLoading || isDelLoads) ? true : false}
                         >
-                            Delete User
+                            {isDelLoads ? 'Deleting...' : 'Delete User'}
                         </button>
                     </div>
                 </form>
