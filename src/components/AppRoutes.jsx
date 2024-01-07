@@ -11,6 +11,7 @@ import EditUser from "../features/users/components/EditUser"
 import NewUserForm from "../features/users/components/NewUserForm"
 import EditNote from "../features/notes/components/EditNote"
 import NewNote from "../features/notes/components/NewNote"
+import Prefetch from "../features/auth/components/Prefetch"
 
 const AppRoutes = () => {
     return (
@@ -23,23 +24,25 @@ const AppRoutes = () => {
                 <Route index element={<PublicPage />}/>
                 <Route path="login" element={<Login />} />
 
-                {/* protected routes below */}
-                <Route path="dash" element={<DashLayout />} >
-                    {/* this is the index page for the protected routes */}
-                    <Route index element={<WelcomePage />} />
+                <Route element={<Prefetch />}>
+                    {/* protected routes below */}
+                    <Route path="dash" element={<DashLayout />} >
+                        {/* this is the index page for the protected routes */}
+                        <Route index element={<WelcomePage />} />
 
-                    <Route path="users">
-                        <Route index element={<UsersList />} />
-                        <Route path=":id" element={<EditUser />} />
-                        <Route path="new" element={<NewUserForm />} />
+                        <Route path="users">
+                            <Route index element={<UsersList />} />
+                            <Route path=":id" element={<EditUser />} />
+                            <Route path="new" element={<NewUserForm />} />
+                        </Route>
+
+                        <Route path="notes">
+                            <Route index element={<NotesList />} />
+                            <Route path=":id" element={<EditNote />} />
+                            <Route path="new" element={<NewNote />} />
+                        </Route>
+
                     </Route>
-
-                    <Route path="notes">
-                        <Route index element={<NotesList />} />
-                        <Route path=":id" element={<EditNote />} />
-                        <Route path="new" element={<NewNote />} />
-                    </Route>
-
                 </Route>
             </Route>
         </Routes>

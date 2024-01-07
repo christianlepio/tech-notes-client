@@ -21,6 +21,7 @@ const Prefetch = () => {
         }
     }, [])
 
+    // all of the protected routes will be wrapped here
     return <Outlet />
 }
 
