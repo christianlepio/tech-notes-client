@@ -17,7 +17,7 @@ const User = ({ userId, index }) => {
         // set roles array to a string & replace comma to comma space
         const userRolesString = user.roles.toString().replaceAll(',', ', ')
         // if user is active then set cell status to table-active
-        const cellStatus = user.active ? '' : 'table-active'
+        const cellStatus = user.active ? 'table-active' : ''
 
         return (
             <tr>

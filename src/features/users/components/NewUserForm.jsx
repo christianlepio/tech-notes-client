@@ -206,7 +206,7 @@ const NewUserForm = () => {
                             className="btn btn-success flex-grow-1 mt-2"
                             disabled={!canSave}
                         >
-                            Submit User
+                            {isLoading ? 'Loading...' : 'Submit User'}
                         </button>
                     </div>
                 </form>

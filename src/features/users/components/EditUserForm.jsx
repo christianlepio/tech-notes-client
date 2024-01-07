@@ -186,7 +186,6 @@ const EditUserForm = ({ user }) => {
                             onChange={onPasswordChanged}
                             onFocus={() => setPwdFocus(true)}
                             onBlur={() => setPwdFocus(false)}
-                            required
                         />
 
                         <div className={pwdFocus ? validPwdClass === 'is-valid' ? 'valid-feedback' : 'invalid-feedback' : null}>
@@ -236,7 +235,7 @@ const EditUserForm = ({ user }) => {
                     
                     {/* checkbox for active */}
                     <div className="mb-3">
-                        <div class="form-check form-switch">
+                        <div className="form-check form-switch">
                             <input 
                                 className="form-check-input" 
                                 type="checkbox" 
