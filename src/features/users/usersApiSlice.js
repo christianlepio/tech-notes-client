@@ -34,7 +34,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             // default is 60 seconds 
             // this will save user's data for at least 5 seconds in cache
             // remove this when deployment in the production
-            keepUnusedDataFor: 5,
+            // keepUnusedDataFor: 5,
             // add or modify new fields or obj to the users data using transformResponse
             transformResponse: responseData => {
                 const loadedUsers = responseData.map(user => {
