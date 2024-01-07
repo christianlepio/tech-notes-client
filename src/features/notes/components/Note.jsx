@@ -44,10 +44,6 @@ const Note = ({ noteId, index }) => {
         )
 
     } else return null
-
-    return (
-        <div>Notes</div>
-    )
 }
 
 export default Note
