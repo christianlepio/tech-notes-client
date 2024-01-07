@@ -37,7 +37,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
             // default is 60 seconds 
             // this will save note's data for at least 5 seconds in cache
             // remove this when deployment in the production
-            keepUnusedDataFor: 5,
+            // keepUnusedDataFor: 5,
             // add or modify new fields or obj to the notes data using transformResponse
             transformResponse: responseData => {
                 const loadedNotes = responseData.map(note => {
