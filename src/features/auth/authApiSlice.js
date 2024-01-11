@@ -20,11 +20,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
             // it accpets arguments, and other methods dispatch & queryFulfilled
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
-                    // const data =
-                    await queryFulfilled // wait for the query to be fulfilled
-                    // console.log(data)
+                    const { data } = await queryFulfilled // wait for the query to be fulfilled
+                    console.log(data)
                     dispatch(logout()) // if query fulfilled then call logout function using dispatch
-                    dispatch(apiSlice.util.resetApiState()) // after logout clear all cached data.
+                    setTimeout(() => {
+                        dispatch(apiSlice.util.resetApiState()) // after logout clear all cached data.
+                    }, 1000);
                 } catch (err) {
                     console.log('Logout Error: ', err)
                 }

@@ -49,6 +49,7 @@ const Login = () => {
         } catch (err) {
             console.log('Login error: ', err)
             if (!err.status) {
+                console.log('No server response!')
                 setErrMsg('No server response!')
             } else if (err.status === 400) {
                 setErrMsg('Missing username or password')
@@ -63,66 +64,67 @@ const Login = () => {
     }
 
     const content = (
-        <section className="px-4 py-4 shadow border rounded-4 align-self-center">
-            <div
-                className={'alert alert-danger ' + (errMsg ? null : 'd-none')}
-                role="alert"
-                ref={errRef}
-            >
-                <div><i className="bi bi-exclamation-circle me-2"></i><strong>{errMsg}</strong></div>
-            </div>
-
-            <h1 className="h1 mb-4 mt-2 text-center">User Login</h1>
-
-            <form onSubmit={handleSubmit}>
-
-                {/* username input */}
-                <div className="mb-3">
-                    <label htmlFor="usernameInput" className="form-label lead">Username</label>
-                    <input 
-                        type="text" 
-                        id="usernameInput"
-                        placeholder="Enter username here:"
-                        className='form-control mb-1'
-                        ref={userRef}
-                        autoComplete="off" //to avoid auto suggestion of values from the input
-                        value={username}
-                        onChange={handleUserInput}
-                        required
-                    />
+        <main className="d-flex justify-content-center">
+            <section className="px-4 py-4 shadow border rounded-4 align-self-center">
+                <div
+                    className={'alert alert-danger ' + (errMsg ? null : 'd-none')}
+                    role="alert"
+                    ref={errRef}
+                >
+                    <div><i className="bi bi-exclamation-circle me-2"></i><strong>{errMsg}</strong></div>
                 </div>
 
-                {/* username input */}
-                <div className="mb-3">
-                    <label htmlFor="pwdInput" className="form-label lead">Password</label>
-                    <input 
-                        type="password" 
-                        id="pwdInput"
-                        placeholder="Enter password here:" 
-                        className='form-control mb-1'
-                        value={password}
-                        onChange={handlePasswordInput}
-                        required
-                    />
-                </div>
+                <h1 className="h1 mb-4 mt-2 text-center">User Login</h1>
 
-                {/* login button */}
-                <div className="d-flex mb-3">
-                    <button 
-                        type="submit"
-                        className="btn btn-success flex-grow-1 mt-2"
-                        disabled={isLoading ? true : false}
-                    >
-                        {isLoading ? 'Loading...' : 'Login'}
-                    </button>
-                </div>
+                <form onSubmit={handleSubmit}>
 
-                <div className="mb-3">
-                    <Link to='/'>Back to Home</Link>
-                </div>
-            </form>
+                    {/* username input */}
+                    <div className="mb-3">
+                        <label htmlFor="usernameInput" className="form-label lead">Username</label>
+                        <input 
+                            type="text" 
+                            id="usernameInput"
+                            placeholder="Enter username here:"
+                            className='form-control mb-1'
+                            ref={userRef}
+                            autoComplete="off" //to avoid auto suggestion of values from the input
+                            value={username}
+                            onChange={handleUserInput}
+                            required
+                        />
+                    </div>
 
-        </section>
+                    {/* username input */}
+                    <div className="mb-3">
+                        <label htmlFor="pwdInput" className="form-label lead">Password</label>
+                        <input 
+                            type="password" 
+                            id="pwdInput"
+                            placeholder="Enter password here:" 
+                            className='form-control mb-1'
+                            value={password}
+                            onChange={handlePasswordInput}
+                            required
+                        />
+                    </div>
+
+                    {/* login button */}
+                    <div className="d-flex mb-3">
+                        <button 
+                            type="submit"
+                            className="btn btn-success flex-grow-1 mt-2"
+                            disabled={isLoading ? true : false}
+                        >
+                            {isLoading ? 'Loading...' : 'Login'}
+                        </button>
+                    </div>
+
+                    <div className="mb-3 text-center">
+                        <Link to='/'>Back to Home</Link>
+                    </div>
+                </form>
+            </section>
+        </main>
     )
 
     return content

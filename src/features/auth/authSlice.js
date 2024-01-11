@@ -20,7 +20,9 @@ const authSlice = createSlice({
         }, 
         // action to logout and set the state token to null
         logout: (state, action) => {
+            console.log('before logout: ', state.token)
             state.token = null
+            console.log('after logout: ', state.token)
         }
     }
 })
