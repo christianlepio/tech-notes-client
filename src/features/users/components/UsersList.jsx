@@ -11,7 +11,7 @@ const UsersList = () => {
         isSuccess, // boolean
         isError, // boolean
         error // error message
-    } = useGetUsersQuery(undefined, {
+    } = useGetUsersQuery('usersList', {
         pollingInterval: 60000, // means, it will refetch user data every after 60 seconds
         refetchOnFocus: true, // will refetch user data if you go to another window and comeback to previous window
         refetchOnMountOrArgChange: true // will refetch user data if component reloads
