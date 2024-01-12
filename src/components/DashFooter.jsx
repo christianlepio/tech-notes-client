@@ -1,8 +1,10 @@
 // use navigate to navigate to the next page
 // use location to record the previous page before navigating to another page
 import { useNavigate, useLocation } from "react-router-dom"
+import useAuth from "../hooks/useAuth" // this contains decoded user info from access token 
 
 const DashFooter = () => {
+    const { username, status } = useAuth()
     // initialize useNavigate hook
     const navigate = useNavigate()
     // get the path name from use location hook
@@ -28,8 +30,8 @@ const DashFooter = () => {
         <footer className="py-5">
             <div className="d-flex justify-content-start">
                 {goHomeButton}
-                <p className="mx-4">Current User: </p>
-                <p className="mx-4">Status: </p>
+                <p className="mx-4">Current User: {username}</p>
+                <p className="mx-4">Status: {status}</p>
             </div>
         </footer>
     )
