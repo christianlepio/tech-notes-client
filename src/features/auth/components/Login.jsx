@@ -7,12 +7,16 @@ import { setCredentials } from "../authSlice" // this will set the access token
 // will return the refresh token in the cookie and access token
 import { useLoginMutation } from "../authApiSlice" 
 
+// custom react hook
+import usePersist from "../../../hooks/usePersist"
+
 const Login = () => {
     const userRef = useRef()
     const errRef = useRef()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errMsg, setErrMsg] = useState('')
+    const [persist, setPersist] = usePersist()
 
     // initialize navigate & dispatch function
     const navigate = useNavigate()
@@ -31,6 +35,7 @@ const Login = () => {
 
     const handleUserInput = (e) => setUsername(e.target.value)
     const handlePasswordInput = (e) => setPassword(e.target.value)
+    const handleTogglePersist = () => setPersist(prev => !prev)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -48,8 +53,7 @@ const Login = () => {
             navigate('/dash')
         } catch (err) {
             console.log('Login error: ', err)
-            if (!err.status) {
-                console.log('No server response!')
+            if (err.error) {
                 setErrMsg('No server response!')
             } else if (err.status === 400) {
                 setErrMsg('Missing username or password')
@@ -94,7 +98,7 @@ const Login = () => {
                         />
                     </div>
 
-                    {/* username input */}
+                    {/* password input */}
                     <div className="mb-3">
                         <label htmlFor="pwdInput" className="form-label lead">Password</label>
                         <input 
@@ -106,6 +110,21 @@ const Login = () => {
                             onChange={handlePasswordInput}
                             required
                         />
+                    </div>
+
+                    {/* handle toggle persist */}
+                    <div className="mb-3">
+                        <div className="form-check form-switch">
+                            <input 
+                                className="form-check-input" 
+                                type="checkbox" 
+                                role="switch" 
+                                id="flexSwitchCheckDefault" 
+                                checked={persist}
+                                onChange={handleTogglePersist}
+                            />
+                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault"> Trust this device</label>
+                        </div>
                     </div>
 
                     {/* login button */}
