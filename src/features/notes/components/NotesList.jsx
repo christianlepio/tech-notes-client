@@ -2,8 +2,12 @@
 import { useGetNotesQuery } from "../notesApiSlice"
 // component
 import Note from "./Note"
+import useAuth from "../../../hooks/useAuth" // contains decoded user info
 
 const NotesList = () => {
+    // get state from useAuth
+    const { username, isManager, isAdmin } = useAuth()
+
     // get variables from generated custom hooks (rtk query)
     const {
         data: notes, // rename data to notes, this returns a notes array
@@ -25,11 +29,20 @@ const NotesList = () => {
     if (isError) content = <p className="text-danger">{error?.data?.message}</p>
 
     if (isSuccess) {
-        // get ids array from normalized state obj of notes
-        const { ids } = notes
+        // get ids & entities array from normalized state obj of notes
+        const { ids, entities } = notes
+
+        let filteredIds
+        if (isManager || isAdmin) {
+            filteredIds = [...ids]
+        } else {
+            // if current user is only an employee
+            // return all notes that owns by the current user
+            filteredIds = ids.filter(noteId => entities[noteId].username === username)
+        }
 
         const tableContent = ids?.length
-            ? ids.map((noteId, i) => <Note key={noteId} noteId={noteId} index={i} />)
+            ? filteredIds.map((noteId, i) => <Note key={noteId} noteId={noteId} index={i} />)
             : null
 
         content = (
