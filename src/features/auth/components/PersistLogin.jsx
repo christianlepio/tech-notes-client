@@ -64,7 +64,7 @@ const PersistLogin = () => {
         content = (
             <p className="text-danger text-center">
                 {error.data?.message}
-                <Link to='/login'>Please login again</Link>
+                <Link to='/login'> Please login again</Link>
             </p>
         )
     } else if (isSuccess && trueSuccess) { // persist: yes/true token: yes
