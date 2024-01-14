@@ -63,7 +63,7 @@ const PersistLogin = () => {
         console.log('Get new access token error: ', error)
         content = (
             <p className="text-danger text-center">
-                {error.data?.message}
+                {`${error.data?.message} - `}
                 <Link to='/login'> Please login again</Link>
             </p>
         )
