@@ -35,10 +35,13 @@ const AppRoutes = () => {
                                 {/* this is the index page for the protected routes */}
                                 <Route index element={<WelcomePage />} />
 
-                                <Route path="users">
-                                    <Route index element={<UsersList />} />
-                                    <Route path=":id" element={<EditUser />} />
-                                    <Route path="new" element={<NewUserForm />} />
+                                {/* require auth and verify roles to access for users route */}
+                                <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />} >
+                                    <Route path="users">
+                                        <Route index element={<UsersList />} />
+                                        <Route path=":id" element={<EditUser />} />
+                                        <Route path="new" element={<NewUserForm />} />
+                                    </Route>
                                 </Route>
 
                                 <Route path="notes">
