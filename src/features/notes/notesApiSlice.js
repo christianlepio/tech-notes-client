@@ -28,12 +28,13 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         // method to get all notes from url+query
         // builder.query is for requesting data
         getNotes: builder.query({
-            // query value that will combined to the baseUrl
-            query: () => '/notes',
-            // make sure that the result is not an error if the response status is 200
-            validateStatus: (response, result) => {
-                return response.status === 200 && !result.isError
-            },
+            query: () => ({
+                url: '/notes', // query value that will combined to the baseUrl
+                // make sure that the result is not an error if the response status is 200
+                validateStatus: (response, result) => {
+                    return response.status === 200 && !result.isError
+                }
+            }),
             // default is 60 seconds 
             // this will save note's data for at least 5 seconds in cache
             // remove this when deployment in the production
