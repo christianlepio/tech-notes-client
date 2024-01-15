@@ -2,8 +2,12 @@ import { useState, useEffect, useRef } from "react"
 // generated custom hook from rtk query
 import { useUpdateNoteMutation, useDeleteNoteMutation } from "../notesApiSlice"
 import { useNavigate } from "react-router-dom"
+import useAuth from "../../../hooks/useAuth"
 
 const EditNoteForm = ({ note, users }) => {
+    // get state from useAuth custom hook
+    const { isManager, isAdmin } = useAuth()
+
     // initialize RTK query custom hooks mutation, and get the method and variables
     const [updateNote, {
         isLoading, 
@@ -84,6 +88,23 @@ const EditNoteForm = ({ note, users }) => {
     // define error either from update error or delete error
     // using Nullish coalescing, this will returns blank errContent if update/delete error is undefined
     const errContent = (error?.data?.message || delError?.data?.message) ?? ''
+
+    let deleteBtn = null 
+    if (isManager || isAdmin) {
+        deleteBtn = (
+            // delete button
+            <div className="d-flex">
+                <button 
+                    type="button"
+                    className="btn btn-warning flex-grow-1 mt-2"
+                    onClick={onDeleteNoteClicked}
+                    disabled={(isLoading || isDelLoading) ? true : false}
+                >
+                    {isDelLoading ? 'Deleting...' : 'Delete User'}
+                </button>
+            </div>
+        )
+    }
 
     const content = (
         <>
@@ -176,17 +197,7 @@ const EditNoteForm = ({ note, users }) => {
                         </button>
                     </div>
 
-                    {/* delete button */}
-                    <div className="d-flex">
-                        <button 
-                            type="button"
-                            className="btn btn-warning flex-grow-1 mt-2"
-                            onClick={onDeleteNoteClicked}
-                            disabled={(isLoading || isDelLoading) ? true : false}
-                        >
-                            {isDelLoading ? 'Deleting...' : 'Delete User'}
-                        </button>
-                    </div>
+                    {deleteBtn}
                 </form>
 
             </section>
