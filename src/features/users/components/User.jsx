@@ -1,12 +1,23 @@
 import { useNavigate } from 'react-router-dom'
 // useSelector: to get global state variable from store
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 // memoized selector 
-import { selectUserById } from '../usersApiSlice'
+// import { selectUserById } from '../usersApiSlice'
+
+import { useGetUsersQuery } from '../usersApiSlice'
+import { memo } from 'react' // this is to return memoized data
 
 const User = ({ userId, index }) => {
     // get specific user by id from state
-    const user = useSelector(state => selectUserById(state, userId))
+    // const user = useSelector(state => selectUserById(state, userId))
+
+    // get specific user by id by calling query endpoint getUsers
+    const { user } = useGetUsersQuery('usersList', {
+        // built in function to get/return specific user
+        selectFromResult: ({ data }) => ({
+            user: data?.entities[userId]
+        }),
+    })
 
     // initialize useNavigate hook
     const navigate = useNavigate()
@@ -39,4 +50,7 @@ const User = ({ userId, index }) => {
     } else return null
 }
 
-export default User
+// this component will only re-render when the memoized data changes
+const memoizedUser = memo(User)
+
+export default memoizedUser
