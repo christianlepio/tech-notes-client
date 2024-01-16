@@ -1,12 +1,23 @@
 import { useNavigate } from 'react-router-dom'
 // useSelector: to get global state variable from store
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 // memoized selector
-import { selectNoteById } from '../notesApiSlice'
+// import { selectNoteById } from '../notesApiSlice'
+
+import { useGetNotesQuery } from '../notesApiSlice'
+import { memo } from 'react' // this is to return memoized data
 
 const Note = ({ noteId, index }) => {
     // get specific note by id from state
-    const note = useSelector(state => selectNoteById(state, noteId))
+    // const note = useSelector(state => selectNoteById(state, noteId))
+
+    // get specific note by id by calling query endpoint getNotes
+    const { note } = useGetNotesQuery('notesList', {
+        // built in function to get/return specific note
+        selectFromResult: ({ data }) => ({
+            note: data?.entities[noteId]
+        }),
+    })
 
     // initialize useNavigate hook
     const navigate = useNavigate()
@@ -46,4 +57,7 @@ const Note = ({ noteId, index }) => {
     } else return null
 }
 
-export default Note
+// this component will only re-render when the memoized data changes
+const memoizedNote = memo(Note)
+
+export default memoizedNote
