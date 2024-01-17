@@ -13,7 +13,7 @@ const NewNote = () => {
     const { users } = useGetUsersQuery('usersList', {
         // built in function to get/return all users
         selectFromResult: ({ data }) => ({
-            user: data?.ids.map(id => data?.entities[id])
+            users: data?.ids.map(id => data?.entities[id])
         }),
     })
 
