@@ -100,7 +100,7 @@ const EditNoteForm = ({ note, users }) => {
                     onClick={onDeleteNoteClicked}
                     disabled={(isLoading || isDelLoading) ? true : false}
                 >
-                    {isDelLoading ? 'Deleting...' : 'Delete User'}
+                    {isDelLoading ? 'Deleting...' : 'Delete Note'}
                 </button>
             </div>
         )
@@ -193,7 +193,7 @@ const EditNoteForm = ({ note, users }) => {
                             className="btn btn-success flex-grow-1 mt-2"
                             disabled={(isLoading || isDelLoading) ? true : !canSave}
                         >
-                            {isLoading ? 'Updating...' : 'Save User'}
+                            {isLoading ? 'Updating...' : 'Save Note'}
                         </button>
                     </div>
 

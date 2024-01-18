@@ -125,7 +125,7 @@ const NewNoteForm = ({ users }) => {
                             className="btn btn-success flex-grow-1 mt-2"
                             disabled={isLoading ? true : !canSave}
                         >
-                            {isLoading ? 'Loading...' : 'Submit User'}
+                            {isLoading ? 'Loading...' : 'Submit New Note'}
                         </button>
                     </div>
                 </form>

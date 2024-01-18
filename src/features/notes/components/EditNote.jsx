@@ -38,7 +38,7 @@ const EditNote = () => {
 
     // dont allow other user to edit note that is not their note unless the user is manager or admin
     if (!isManager || !isAdmin) {
-        if (note.username !== username) {
+        if (note?.username !== username) {
             return <p className="text-center">You have no permision to edit this note</p>
         }
     }
