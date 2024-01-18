@@ -6,7 +6,7 @@ import { setCredentials } from '../../features/auth/authSlice'
 
 // define base query 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:3500', // url used by the backend (nodeJS)
+    baseUrl: 'https://rytechnotes-api.onrender.com', // url used by the backend (nodeJS)
     credentials: 'include', // to send back the httpOnly cookie from frontend to backend
     // attach headers to base query
     // receives headers & destructured getState params
