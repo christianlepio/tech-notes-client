@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react"
 import { useUpdateUserMutation, useDeleteUserMutation } from "../usersApiSlice"
 import { useNavigate } from "react-router-dom"
 import { ROLES } from '../../../config/roles'
+import useTitle from "../../../hooks/useTitle"
 
 // standard username character
 const USER_REGEX = /^[A-z]{3,20}$/
@@ -10,6 +11,9 @@ const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 
 const EditUserForm = ({ user }) => {
+    // this will change the document title on top, dynamically
+    useTitle('Edit User')
+
     // initialize RTK query custom hooks mutation, and get the method and variables
     const [updateUser, {
         isLoading, 

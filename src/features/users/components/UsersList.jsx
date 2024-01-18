@@ -2,8 +2,12 @@
 import { useGetUsersQuery } from "../usersApiSlice"
 // components
 import User from "./User"
+import useTitle from "../../../hooks/useTitle"
 
 const UsersList = () => {
+    // this will change the document title on top, dynamically
+    useTitle('Users List')
+
     // get variables from generated custom hooks (rtk query)
     const {
         data: users, // rename data to users, this returns an users array
