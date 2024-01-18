@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
 import useAuth from "../../../hooks/useAuth" // this contains decoded user info from access token 
+import useTitle from "../../../hooks/useTitle"
 
 const WelcomePage = () => {
+    // this will change the document title on top, dynamically
+    useTitle('Dashboard')
+
     const { username, isManager, isAdmin } = useAuth()
 
     const date = new Date()

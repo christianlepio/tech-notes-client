@@ -9,8 +9,12 @@ import { useLoginMutation } from "../authApiSlice"
 
 // custom react hook
 import usePersist from "../../../hooks/usePersist"
+import useTitle from "../../../hooks/useTitle"
 
 const Login = () => {
+    // this will change the document title on top, dynamically
+    useTitle('Login User')
+
     const userRef = useRef()
     const errRef = useRef()
     const [username, setUsername] = useState('')
