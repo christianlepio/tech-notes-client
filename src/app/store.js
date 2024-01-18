@@ -18,8 +18,8 @@ export const store = configureStore({
         // apiSlice middleware manages cache lifetimes and expirations and 
         // is required to use it when we're using RTK query in an apiSlice
         getDefaultMiddleware().concat(apiSlice.middleware),
-    // allow debugging with react devtools 
-    devTools: true
+    // allow/disallow debugging with react redux devtools 
+    devTools: false
 })
 
 // this will enabled some options that we can use now with rtk query

@@ -12,6 +12,11 @@ import 'bootstrap/dist/js/bootstrap.bundle.js' //import bootstrap js
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 
+// this will disable the react devtools
+import { disableReactDevTools } from '@fvilers/disable-react-devtools'
+
+if (import.meta.env.NODE_ENV === 'production') disableReactDevTools()
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* wrapping the app component within the Provider
