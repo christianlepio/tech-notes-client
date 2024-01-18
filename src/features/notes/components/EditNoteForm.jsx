@@ -3,8 +3,12 @@ import { useState, useEffect, useRef } from "react"
 import { useUpdateNoteMutation, useDeleteNoteMutation } from "../notesApiSlice"
 import { useNavigate } from "react-router-dom"
 import useAuth from "../../../hooks/useAuth"
+import useTitle from "../../../hooks/useTitle"
 
 const EditNoteForm = ({ note, users }) => {
+    // this will change the document title on top, dynamically
+    useTitle('Edit Note')
+
     // get state from useAuth custom hook
     const { isManager, isAdmin } = useAuth()
 

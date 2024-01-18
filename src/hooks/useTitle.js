@@ -1,3 +1,4 @@
+// this will change the document title on top, dynamically
 import { useEffect } from "react"
 
 const useTitle = (title) => {

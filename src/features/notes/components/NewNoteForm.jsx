@@ -2,8 +2,12 @@ import { useState, useEffect, useRef } from "react"
 // generated custom hook from rtk query
 import { useAddNewNoteMutation } from "../notesApiSlice"
 import { useNavigate } from "react-router-dom"
+import useTitle from "../../../hooks/useTitle"
 
 const NewNoteForm = ({ users }) => {
+    // this will change the document title on top, dynamically
+    useTitle('Add New Note')
+
     // console.log('users: ', users)
     // initialize RTK query custom hooks mutation, and get the method and variables
     const [addNewNote, {

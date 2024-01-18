@@ -15,8 +15,12 @@ import Prefetch from "../features/auth/components/Prefetch"
 import PersistLogin from "../features/auth/components/PersistLogin"
 import RequireAuth from "../features/auth/components/RequireAuth"
 import { ROLES } from "../config/roles"
+import useTitle from "../hooks/useTitle"
 
 const AppRoutes = () => {
+    // this will change the document title on top, dynamically
+    useTitle('Welcome Page')
+
     return (
         <Routes>
             {/* parent route */}

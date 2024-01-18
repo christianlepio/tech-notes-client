@@ -3,8 +3,12 @@ import { useGetNotesQuery } from "../notesApiSlice"
 // component
 import Note from "./Note"
 import useAuth from "../../../hooks/useAuth" // contains decoded user info
+import useTitle from "../../../hooks/useTitle"
 
 const NotesList = () => {
+    // this will change the document title on top, dynamically
+    useTitle('Notes List')
+
     // get state from useAuth
     const { username, isManager, isAdmin } = useAuth()
 

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { useGetUsersQuery } from "../../users/usersApiSlice"
 import { useGetNotesQuery } from "../notesApiSlice"
 import useAuth from "../../../hooks/useAuth"
+import useTitle from "../../../hooks/useTitle"
 
 // component
 import EditNoteForm from "./EditNoteForm"
@@ -39,6 +40,8 @@ const EditNote = () => {
     // dont allow other user to edit note that is not their note
     if (!isManager || !isAdmin) {
         if (note?.username !== username) {
+            // this will change the document title on top, dynamically
+            useTitle('No Permission')
             return <p className="text-center">You have no permision to edit this note</p>
         }
     }
