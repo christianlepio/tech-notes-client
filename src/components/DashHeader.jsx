@@ -25,17 +25,17 @@ const DashHeader = () => {
         error
     }] = useSendLogoutMutation()
 
-    useEffect(() => {
-        if (isSuccess) {
-            console.log('success logout')
-            navigate('/')
-        }
-    }, [isSuccess, navigate])
-
     const onNewNoteCliked = () => navigate('/dash/notes/new')
     const onNewUserCliked = () => navigate('/dash/users/new')
     const onNotesCliked = () => navigate('/dash/notes')
     const onUsersCliked = () => navigate('/dash/users')
+    const onUsersLogout = async () => {
+        await sendLogout()
+        if (isSuccess || !isError) {
+            console.log('success logout')
+            navigate('/login')
+        }
+    }
 
     let dashClass = null
     if (!DASH_REGEX.test(pathname) && !NOTES_REGEX.test(pathname) && !USERS_REGEX.test(pathname)) {
@@ -102,7 +102,7 @@ const DashHeader = () => {
         <button
             type="button"
             className="btn btn-warning mx-2"
-            onClick={sendLogout}
+            onClick={onUsersLogout}
             disabled={isLoading ? true : false}
         >
             {isLoading 
